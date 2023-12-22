@@ -1,22 +1,24 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/Providers";
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     console.log('from navbar',user);
+    const navigate = useNavigate()
 
     const navLink = <>
     <li><Link to={'/'}>Home</Link></li>
     <li><Link to={'/about'}>About</Link></li>
     <li><Link to={'/register'}>Register</Link></li>
     <li><Link to={'/contact'}>Contact</Link></li>
-    {user? <li><Link to={'/dashboard'}>Dashboard</Link></li> : <></>}
+    {user? <li><Link to={'/dashboard/user'}>Dashboard</Link></li> : <></>}
     </>
 
     const handleLogOut= () => {
         logOut()
+        navigate('/')
     }
 
 
