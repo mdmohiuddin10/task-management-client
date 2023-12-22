@@ -1,22 +1,23 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/Providers";
+import Socail from "../../Layouts/Shared/Socail/Socail";
 
 
 const Login = () => {
 
-    const {register,handleSubmit, formState: { errors },} = useForm()
+    const { register, handleSubmit, formState: { errors }, } = useForm()
     const { signIn } = useContext(AuthContext)
 
 
     const onSubmit = data => {
         signIn(data.email, data.password)
-        .then( result => {
-            console.log(result.user);
-        })
-        .error(error=>{
-            console.log(error);
-        })
+            .then(result => {
+                console.log(result.user);
+            })
+            .error(error => {
+                console.log(error);
+            })
     }
 
     return (
@@ -28,7 +29,7 @@ const Login = () => {
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
                     <div className="flex-1 w-full shadow-2xl bg-base-100">
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -44,8 +45,9 @@ const Login = () => {
                                 {errors.password && <span>This field is required</span>}
                             </div>
                             <div className="form-control mt-6">
-                           <input type="submit" value="Login" />
+                                <input type="submit" value="Login" />
                             </div>
+                            <Socail></Socail>
                         </form>
                     </div>
                 </div>
