@@ -36,7 +36,6 @@ const CreateTasks = () => {
                 timer: 1500
             });
         }
-
     };
     return (
         <div>
@@ -75,11 +74,8 @@ const CreateTasks = () => {
                         </label>
                         <textarea {...register('taskdescription')} className="textarea textarea-bordered h-32" required placeholder="Task Details"></textarea>
                     </div>
-                    <div className="flex justify-center items-center mt-5 gap-5">
+                    <div className="flex justify-center bg-[#FCA61F] py-2 rounded-lg items-center mt-5 gap-5">
                         <input type="submit" value="Create Task" />
-                       <Link to={'/dashboard/editTask/:id'}>
-                       <button className="btn">Edit</button>
-                       </Link>
                     </div>
                 </form>
             </div>

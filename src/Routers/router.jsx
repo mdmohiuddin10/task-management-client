@@ -8,9 +8,9 @@ import Dashboard from "../Dashboard/Dashboard";
 import User from "../Pages/Dashboard/User/User";
 import EditTask from "../Pages/Dashboard/EditTask/EditTask";
 import CreateTasks from "../Pages/Dashboard/CreateTask/CreateTasks";
-import PreviousTask from "../Pages/Dashboard/PreviousTask/PreviousTask";
 import ToDolist from "../Pages/Dashboard/ToDoList/ToDolist";
 import AllTasks from "../Pages/Dashboard/AllTasks/AllTasks";
+import PrivateRouts from "./PrivateRouts";
 
 const router = createBrowserRouter([
     {
@@ -38,12 +38,12 @@ const router = createBrowserRouter([
     // dashboard
     {
         path: 'dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRouts><Dashboard></Dashboard></PrivateRouts>,
         children: [
             // normal users
             {
                 path: 'user',
-                element: <User></User>
+                element: <PrivateRouts><User></User></PrivateRouts>
             },
             {
                 path: 'createTask',
@@ -53,10 +53,7 @@ const router = createBrowserRouter([
                 path: 'editTask/:id',
                 element: <EditTask></EditTask>,
                 loader: ({params})=> fetch(`http://localhost:5000/taskData/${params.id}`)
-            },
-            {
-                path: 'previousTasks',
-                element: <PreviousTask></PreviousTask>
+
             },
             {
                 path: 'toDoList',

@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/Providers";
+import { Link } from "react-router-dom";
 
 
 const AllTasks = () => {
@@ -32,7 +33,7 @@ const AllTasks = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-               axiosPublic.delete(`/taskData/${id}`)
+                axiosPublic.delete(`/taskData/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch()
@@ -47,7 +48,7 @@ const AllTasks = () => {
         });
     }
 
-    
+
 
     return (
         <div>
@@ -61,6 +62,7 @@ const AllTasks = () => {
                             <th>Status</th>
                             <th>DateLine</th>
                             <th>Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,6 +71,11 @@ const AllTasks = () => {
                             <td>{task.title}</td>
                             <td>{task.status}</td>
                             <td>{task.Deadlines}</td>
+                            <td>
+                                <Link to={`/dashboard/editTask/${task._id}`}>
+                                    <button className="btn">Edit</button>
+                                </Link>
+                            </td>
                             <td>
                                 <button onClick={() => handleDelete(task._id)} className="btn">Delete</button>
                             </td>
