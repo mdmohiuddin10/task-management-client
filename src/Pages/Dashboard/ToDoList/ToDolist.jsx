@@ -3,6 +3,12 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import SectionTitle from "../../../Layouts/Shared/SectionTitle/SectionTitle";
 import { AuthContext } from "../../../Providers/Providers";
 import { useQuery } from "@tanstack/react-query";
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { DndProvider } from 'react-dnd'
+
+
+
+
 
 
 const ToDolist = () => {
@@ -21,6 +27,7 @@ const ToDolist = () => {
     console.log(newData);
 
     return (
+        <DndProvider backend={HTML5Backend}>
         <div className="px-5">
             <SectionTitle heading={'To Do List'}></SectionTitle>
             <div className="flex gap-5">
@@ -28,7 +35,7 @@ const ToDolist = () => {
                     <h2 className="text-center text-xl mt-5 font-semibold">To Do</h2>
                     <div className="px-5 mt-5">
                         {
-                            newData.map(task => <div key={task._d} className="card bg-base-100 shadow-xl">
+                            newData.map(task => <div key={task._d} className="card bg-base-100 shadow-xl mb-5">
                                 <div className="px-3 py-5">
                                     <h2 className="text-md">Task: {task.title}</h2>
                                     <p>Task Level: {task.Priority}</p>
@@ -47,6 +54,7 @@ const ToDolist = () => {
                 </div>
             </div>
         </div>
+</DndProvider>
     );
 };
 

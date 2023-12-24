@@ -52,7 +52,7 @@ const router = createBrowserRouter([
             {
                 path: 'editTask/:id',
                 element: <EditTask></EditTask>,
-                loader: ({params})=> fetch(`http://localhost:5000/taskData/${params.id}`)
+                loader: ({params})=> fetch(`https://y-six-rust.vercel.app/taskData/${params.id}`)
 
             },
             {

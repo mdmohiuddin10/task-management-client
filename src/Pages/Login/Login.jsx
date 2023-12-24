@@ -2,19 +2,21 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/Providers";
 import Socail from "../../Layouts/Shared/Socail/Socail";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm()
     const { signIn } = useContext(AuthContext)
+    const navigate = useNavigate()
 
 
     const onSubmit = data => {
         signIn(data.email, data.password)
             .then(result => {
                 console.log(result.user);
+                navigate('/')
             })
             .error(error => {
                 console.log(error);
@@ -41,7 +43,7 @@ const Login = () => {
                             <input {...register("password", { required: true })} type="password" name="password" placeholder="Password" className="input input-bordered" />
                             {errors.password && <span>This field is required</span>}
                         </div>
-                        <div className="form-control mt-6">
+                        <div className="form-control mt-6 bg-[#e0a950] py-2 rounded-lg">
                             <input type="submit" value="Login" />
                         </div>
                         <Socail></Socail>

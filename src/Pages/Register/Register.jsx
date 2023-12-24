@@ -80,7 +80,7 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">PhotoURL</span>
                         </label>
-                        <input {...register("photo", { required: true })} type="text" name="photo" placeholder="photoURL" className="input input-bordered" />
+                        <input {...register("photo", { required: true })} type="url" name="photo" placeholder="photoURL" className="input input-bordered" />
                         {errors.email && <span>This field is required</span>}
                     </div>
                     <div className="form-control">

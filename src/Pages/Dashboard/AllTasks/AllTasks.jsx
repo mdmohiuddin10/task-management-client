@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/Providers";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../../Layouts/Shared/SectionTitle/SectionTitle";
 
 
 const AllTasks = () => {
@@ -52,6 +53,7 @@ const AllTasks = () => {
 
     return (
         <div>
+            <SectionTitle heading={'All Tasks'}></SectionTitle>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

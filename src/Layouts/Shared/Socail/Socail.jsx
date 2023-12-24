@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 const Socail = () => {
-    const { googleSignIn } = useContext(AuthContext)
+    const { googleSignIn, githubSignIn } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
 
@@ -39,13 +39,39 @@ const Socail = () => {
                     })
             })
     }
+    const handleGithub = () => {
+        githubSignIn()
+            .then(result => {
+                console.log(result.user);
+                // send user data to the database
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName,
+                    photo: result.user?.photoURL,
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "User Logged Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        navigate('/')
+                    })
+            })
+    }
     return (
         <div>
             <p className="text-center text-lg mt-3 mb-3">or sign up</p>
             <div className="flex gap-5 justify-center text-3xl pb-5">
                 <button><FaFacebook></FaFacebook></button>
                 <button onClick={handleGoogle}><FaGoogle></FaGoogle></button>
-                <button><FaGithub></FaGithub></button>
+                <button onClick={handleGithub}><FaGithub></FaGithub></button>
             </div>
         </div>
     );
